@@ -7,31 +7,34 @@ function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const { authToken } = useAuth()
+
+  const { authToken, login } = useAuth()
   const navigate = useNavigate()
 
   const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault()
-
+    e.preventDefault();
+  
     // check passwords
     if (password !== confirmPassword) {
-      alert('Les mots de passe ne correspondent pas.')
-      return
+      alert("Les mots de passe ne correspondent pas.");
+      return;
     }
-
+  
     try {
-      console.log('Création du compte pour :', email)
-
-      await signupRequest(email, password)
-
-      alert("Compte créé ! Vous pouvez maintenant vous connecter.")
-      navigate('/login')
-
+      const data = await signupRequest(email, password);
+  
+      // User automatically logged in
+      login(data.token);
+  
+      // Redirect
+      navigate('/home');
+  
     } catch (error: any) {
-      console.error("Signup error:", error?.response?.data || error)
-      alert(error?.response?.data?.message || "Erreur lors de l'inscription")
+      console.error("Signup error:", error?.response?.data || error);
+      alert(error?.response?.data?.message || "Erreur lors de l'inscription");
     }
-  }
+  };
+  
 
   useEffect(() => {
     if (authToken) navigate('/home')
