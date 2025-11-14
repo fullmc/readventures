@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom';
+import { login as loginRequest } from "../services/authServices";
+
 
 function Login() {
   const [email, setEmail] = useState('')
@@ -8,13 +10,22 @@ function Login() {
   const { authToken, login } = useAuth()
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Tentative de connexion avec :', email, password)
-    const token = 'kejne'
-    login(token)
-    // @TODO: backend API call
-  }
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    try {
+      console.log("Tentative de connexion :", email, password);
+  
+      const data = await loginRequest(email, password);
+      // data contient: { message, token, user }
+  
+      login(data.token);   // stockage du token dans ton AuthContext
+  
+    } catch (error: any) {
+      console.error("Erreur lors du login :", error?.response?.data || error);
+      alert(error?.response?.data?.message || "Erreur lors de la connexion");
+    }
+  };
     useEffect(() => {
       if (authToken) {
         navigate('/home');
