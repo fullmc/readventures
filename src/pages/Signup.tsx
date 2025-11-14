@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { signup as signupRequest } from '../services/authServices'
 
-function Signin() {
+function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const { authToken, login } = useAuth()
+  const { authToken } = useAuth()
   const navigate = useNavigate()
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
 
     // check passwords
@@ -18,23 +19,28 @@ function Signin() {
       return
     }
 
-    // fake creation
-    console.log('Création de compte pour :', email)
-    const fakeToken = 'new_user_token'
-    login(fakeToken)
-    // @TODO : backend call
+    try {
+      console.log('Création du compte pour :', email)
+
+      await signupRequest(email, password)
+
+      alert("Compte créé ! Vous pouvez maintenant vous connecter.")
+      navigate('/login')
+
+    } catch (error: any) {
+      console.error("Signup error:", error?.response?.data || error)
+      alert(error?.response?.data?.message || "Erreur lors de l'inscription")
+    }
   }
 
-  // if user logged, go home
   useEffect(() => {
-    if (authToken) {
-      navigate('/home')
-    }
+    if (authToken) navigate('/home')
   }, [authToken, navigate])
 
   return (
     <div>
       <h2>Créer un compte</h2>
+
       <form onSubmit={handleRegister}>
         <input
           type="email"
@@ -43,6 +49,7 @@ function Signin() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
         <input
           type="password"
           placeholder="Mot de passe"
@@ -50,6 +57,7 @@ function Signin() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+
         <input
           type="password"
           placeholder="Confirmer le mot de passe"
@@ -57,6 +65,7 @@ function Signin() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
+
         <button type="submit">Créer mon compte</button>
       </form>
 
@@ -67,4 +76,4 @@ function Signin() {
   )
 }
 
-export default Signin
+export default Signup

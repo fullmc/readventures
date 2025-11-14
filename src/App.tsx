@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import Home from './pages/Home'
 import Login from './pages/Login'
-import Signin from './pages/Signin'
+import Signup from './pages/Signup'
 // import Profile from './pages/Profile'
 type ProtectedRouteProps = {
   component: React.ComponentType<any>;
@@ -16,7 +16,7 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/signin" element={<Signin />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/home" element={<ProtectedRoute component={Home} />} />
             <Route path="/" element={<Navigate replace to="/login" />} />
           </Routes>

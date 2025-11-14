@@ -53,7 +53,7 @@ function Login() {
         <button type="submit">Se connecter</button>
       </form>
       <button onClick={() => (console.log('connexion avec google'))}>Se connecter avec google</button>
-      <button onClick={() => navigate('/signin')}>Créer un compte</button>
+      <button onClick={() => navigate('/signup')}>Créer un compte</button>
     </div>
   )
 }
