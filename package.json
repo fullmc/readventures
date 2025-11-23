@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "@tailwindcss/vite": "^4.1.17",
     "axios": "^1.13.2",
     "class-variance-authority": "^0.7.1",
@@ -35,6 +36,8 @@
     "tailwindcss": "^4.1.17",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",
+    "unplugin-auto-import": "^20.2.0",
+    "unplugin-react-components": "^0.1.4",
     "vite": "^7.1.7"
   }
 }
