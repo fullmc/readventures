@@ -3,7 +3,6 @@ import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom';
 import { login as loginRequest } from "../services/authServices";
 
-
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -52,7 +51,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Se connecter</button>
+        <Button type="submit">Se connecter</Button>
       </form>
       <button onClick={() => {window.location.href = backendUrl}}>Se connecter avec google</button>
       <button onClick={() => navigate('/signup')}>Créer un compte</button>
