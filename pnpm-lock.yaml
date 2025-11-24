@@ -85,7 +85,6 @@ importers:
         specifier: ^20.2.0
         version: 20.2.0
       unplugin-react-components:
-
         specifier: ^0.1.4
         version: 0.1.4(@types/react@19.2.2)(react@19.2.0)(rollup@4.52.5)
       vite:
@@ -885,8 +884,11 @@ packages:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f8d5e61 (💄 feat: add auto-import setup)
+=======
+>>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
 =======
 >>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
   chokidar@3.6.0:
@@ -895,10 +897,13 @@ packages:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 723a946 (💄 feat: shadcn setup)
 =======
 >>>>>>> f8d5e61 (💄 feat: add auto-import setup)
+=======
+>>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
 =======
 >>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
   class-variance-authority@0.7.1:
@@ -1387,8 +1392,11 @@ packages:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f8d5e61 (💄 feat: add auto-import setup)
+=======
+>>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
 =======
 >>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
   magic-string@0.26.7:
@@ -1397,10 +1405,13 @@ packages:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 723a946 (💄 feat: shadcn setup)
 =======
 >>>>>>> f8d5e61 (💄 feat: add auto-import setup)
+=======
+>>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
 =======
 >>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
   magic-string@0.30.21:
@@ -1656,6 +1667,7 @@ packages:
     resolution: {integrity: sha512-j9Ee2YjuQqYT9bbRTfTZht9W/ytp5H+jJpZKiYdP/bpnXARAuELt9ofP0lPnmHjbga7SNQIxdTAXCmtKVYjN+Q==}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   tailwind-merge@3.4.0:
     resolution: {integrity: sha512-uSaO4gnW+b3Y2aWoWfFpX62vn2sR3skfhbjsEnaBI81WD1wBLlHZe5sWf0AqjksNdYTbGBEd0UasQMT3SNV15g==}
 
@@ -1667,6 +1679,8 @@ packages:
   tailwindcss@4.1.17:
     resolution: {integrity: sha512-j9Ee2YjuQqYT9bbRTfTZht9W/ytp5H+jJpZKiYdP/bpnXARAuELt9ofP0lPnmHjbga7SNQIxdTAXCmtKVYjN+Q==}
 
+=======
+>>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
 =======
 >>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
   tapable@2.3.0:
@@ -2573,8 +2587,11 @@ snapshots:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f8d5e61 (💄 feat: add auto-import setup)
+=======
+>>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
 =======
 >>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
   chokidar@3.6.0:
@@ -2591,10 +2608,13 @@ snapshots:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 723a946 (💄 feat: shadcn setup)
 =======
 >>>>>>> f8d5e61 (💄 feat: add auto-import setup)
+=======
+>>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
 =======
 >>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
   class-variance-authority@0.7.1:
@@ -3053,8 +3073,11 @@ snapshots:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f8d5e61 (💄 feat: add auto-import setup)
+=======
+>>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
 =======
 >>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
   magic-string@0.26.7:
@@ -3063,10 +3086,13 @@ snapshots:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 723a946 (💄 feat: shadcn setup)
 =======
 >>>>>>> f8d5e61 (💄 feat: add auto-import setup)
+=======
+>>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
 =======
 >>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
   magic-string@0.30.21:
@@ -3301,6 +3327,7 @@ snapshots:
   tailwindcss@4.1.17: {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   tailwind-merge@3.4.0: {}
 
   tailwindcss-animate@1.0.7(tailwindcss@4.1.17):
@@ -3309,6 +3336,8 @@ snapshots:
 
   tailwindcss@4.1.17: {}
 
+=======
+>>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
 =======
 >>>>>>> 0aaa3b1 (feat(ui): add UI (#3))
   tapable@2.3.0: {}
