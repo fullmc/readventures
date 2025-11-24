@@ -49,10 +49,10 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <Button>Se connecter</Button>
+        <Button type="submit">Se connecter</Button>
       </form>
-      <button onClick={() => (console.log('connexion avec google'))}>Se connecter avec google</button>
-      <button onClick={() => navigate('/signup')}>Créer un compte</button>
+      <Button onClick={() => (console.log('connexion avec google'))}>Se connecter avec google</Button>
+      <Button onClick={() => navigate('/signup')}>Créer un compte</Button>
     </div>
   )
 }

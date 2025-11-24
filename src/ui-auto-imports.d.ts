@@ -6,5 +6,5 @@
 // biome-ignore lint: disable
 export {}
 declare global {
-  const Button: typeof import('@/components/ui/ui').Button
+  const Button: typeof import('@/components/ui/layout').Button
 }

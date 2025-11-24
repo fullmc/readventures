@@ -16,7 +16,7 @@ export default defineConfig({
             "react",
             "react-router-dom",
             {
-              "@/components/ui": [
+              "@/components/ui/layout": [
                 // Shadcn components auto-import
                 
                 "Button",
@@ -35,7 +35,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "@ui": path.resolve(__dirname, "./src/ui.ts"), 
     },
   },
 })
