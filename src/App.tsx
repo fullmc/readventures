@@ -3,7 +3,7 @@ import { AuthProvider } from './context/AuthContext';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-
+import { ThemeToggle } from '@/components/ui/themeToggle'
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
@@ -28,6 +28,8 @@ function App() {
             <Route path="/" element={<Navigate replace to="/home" />} />
 
           </Routes>
+          <ThemeToggle />
+
         </div>
       </Router>
     </AuthProvider>
