@@ -16,7 +16,7 @@ export default defineConfig({
             "react",
             "react-router-dom",
             {
-              "@/components/ui/ui": [
+              "@/components/ui": [
                 // Shadcn components auto-import
                 
                 "Button",
