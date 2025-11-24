@@ -31,13 +31,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   // login
   const login = (token: string) => {
+    setLoading(true);
     setAuthToken(token);
     localStorage.setItem("authToken", token);
 
     // get user after login
     getMe(token)
       .then((userData) => setUser(userData))
-      .catch(() => logout());
+      .catch(() => logout())
+      .finally(() => setLoading(false));
   };
 
   // log out
@@ -45,6 +47,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setAuthToken(null);
     setUser(null);
     localStorage.removeItem("authToken");
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -55,6 +58,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const tokenToUse = googleToken || storedToken;
   
     if (tokenToUse) {
+      setLoading(true);
       setAuthToken(tokenToUse);
   
       // Get user
@@ -67,16 +71,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             localStorage.setItem("authToken", tokenToUse);
           }
         })
-        .catch(logout);
+        .catch(logout)
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
     }
   
-    setLoading(false);
   }, []);
-
-  
-  useEffect(() => {}, [authToken, user]);
-  
-
 
   return (
     <AuthContext.Provider

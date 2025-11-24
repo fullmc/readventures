@@ -9,6 +9,10 @@ function Login() {
   const [password, setPassword] = useState('')
   const { authToken, login } = useAuth()
   const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  console.log("VITE_BACKEND:", backendUrl);
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +27,6 @@ function Login() {
       alert(error?.response?.data?.message || "Erreur lors de la connexion");
     }
   };
-
 
   useEffect(() => {
     if (authToken) {
@@ -51,7 +54,7 @@ function Login() {
         />
         <button type="submit">Se connecter</button>
       </form>
-      <button onClick={() => {window.location.href = "http://localhost:3000/api/auth/google"}}>Se connecter avec google</button>
+      <button onClick={() => {window.location.href = backendUrl}}>Se connecter avec google</button>
       <button onClick={() => navigate('/signup')}>Créer un compte</button>
     </div>
   )
