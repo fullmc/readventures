@@ -72,7 +72,7 @@ function Signup() {
         <button type="submit">Créer mon compte</button>
       </form>
 
-      <button onClick={() => navigate('/login')}>
+      <button onClick={() => navigate('/')}>
         J’ai déjà un compte
       </button>
     </div>

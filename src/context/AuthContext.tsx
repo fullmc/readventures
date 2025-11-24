@@ -47,20 +47,41 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.removeItem("authToken");
   };
 
-  // check if user is logged at the beginning
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const googleToken = params.get("token");
     const storedToken = localStorage.getItem("authToken");
+  
+    console.log("Token URL =", googleToken);
 
-    if (storedToken) {
-      setAuthToken(storedToken);
-
-      getMe(storedToken)
-        .then((userData) => setUser(userData))
-        .catch(() => logout());
+    const tokenToUse = googleToken || storedToken;
+  
+    if (tokenToUse) {
+      setAuthToken(tokenToUse);
+      console.log("Calling login(token)...");
+  
+      // Get user
+      getMe(tokenToUse)
+        .then((userData) => {
+          setUser(userData);
+  
+          // if google token, saved in localstorage
+          if (googleToken) {
+            localStorage.setItem("authToken", tokenToUse);
+          }
+        })
+        .catch(logout);
     }
-
+  
     setLoading(false);
   }, []);
+
+  
+  useEffect(() => {
+    console.log("AuthToken =", authToken, "User =", user);
+  }, [authToken, user]);
+  
+
 
   return (
     <AuthContext.Provider

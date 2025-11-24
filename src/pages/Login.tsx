@@ -26,11 +26,13 @@ function Login() {
       alert(error?.response?.data?.message || "Erreur lors de la connexion");
     }
   };
-    useEffect(() => {
-      if (authToken) {
-        navigate('/home');
-      }
-    }, [authToken, navigate]);
+
+
+  useEffect(() => {
+    if (authToken) {
+      navigate("/home");
+    }
+  }, [authToken, navigate]);
 
   return (
     <div>
@@ -52,7 +54,7 @@ function Login() {
         />
         <button type="submit">Se connecter</button>
       </form>
-      <button onClick={() => (console.log('connexion avec google'))}>Se connecter avec google</button>
+      <button onClick={() => {window.location.href = "http://localhost:3000/api/auth/google"}}>Se connecter avec google</button>
       <button onClick={() => navigate('/signup')}>Créer un compte</button>
     </div>
   )
