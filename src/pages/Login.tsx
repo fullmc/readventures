@@ -13,13 +13,10 @@ function Login() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
   
-    try {
-      console.log("Tentative de connexion :", email, password);
-  
+    try {  
       const data = await loginRequest(email, password);
-      // data contient: { message, token, user }
   
-      login(data.token);   // stockage du token dans ton AuthContext
+      login(data.token);   // token stored in AuthContext
   
     } catch (error: any) {
       console.error("Erreur lors du login :", error?.response?.data || error);

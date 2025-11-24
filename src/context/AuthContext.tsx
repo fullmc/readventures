@@ -51,14 +51,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const params = new URLSearchParams(window.location.search);
     const googleToken = params.get("token");
     const storedToken = localStorage.getItem("authToken");
-  
-    console.log("Token URL =", googleToken);
 
     const tokenToUse = googleToken || storedToken;
   
     if (tokenToUse) {
       setAuthToken(tokenToUse);
-      console.log("Calling login(token)...");
   
       // Get user
       getMe(tokenToUse)
@@ -77,9 +74,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   
-  useEffect(() => {
-    console.log("AuthToken =", authToken, "User =", user);
-  }, [authToken, user]);
+  useEffect(() => {}, [authToken, user]);
   
 
 
