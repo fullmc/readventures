@@ -9,7 +9,7 @@ export default function PrivateRoute() {
   }
 
   if (!authToken) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return <Outlet />;

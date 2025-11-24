@@ -31,13 +31,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   // login
   const login = (token: string) => {
+    setLoading(true);
     setAuthToken(token);
     localStorage.setItem("authToken", token);
 
     // get user after login
     getMe(token)
       .then((userData) => setUser(userData))
-      .catch(() => logout());
+      .catch(() => logout())
+      .finally(() => setLoading(false));
   };
 
   // log out
@@ -45,21 +47,36 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setAuthToken(null);
     setUser(null);
     localStorage.removeItem("authToken");
+    setLoading(false);
   };
 
-  // check if user is logged at the beginning
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const googleToken = params.get("token");
     const storedToken = localStorage.getItem("authToken");
 
-    if (storedToken) {
-      setAuthToken(storedToken);
-
-      getMe(storedToken)
-        .then((userData) => setUser(userData))
-        .catch(() => logout());
+    const tokenToUse = googleToken || storedToken;
+  
+    if (tokenToUse) {
+      setLoading(true);
+      setAuthToken(tokenToUse);
+  
+      // Get user
+      getMe(tokenToUse)
+        .then((userData) => {
+          setUser(userData);
+  
+          // if google token, saved in localstorage
+          if (googleToken) {
+            localStorage.setItem("authToken", tokenToUse);
+          }
+        })
+        .catch(logout)
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
     }
-
-    setLoading(false);
+  
   }, []);
 
   return (

@@ -9,28 +9,30 @@ function Login() {
   const [password, setPassword] = useState('')
   const { authToken, login } = useAuth()
   const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  console.log("VITE_BACKEND:", backendUrl);
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
   
-    try {
-      console.log("Tentative de connexion :", email, password);
-  
+    try {  
       const data = await loginRequest(email, password);
-      // data contient: { message, token, user }
   
-      login(data.token);   // stockage du token dans ton AuthContext
+      login(data.token);   // token stored in AuthContext
   
     } catch (error: any) {
       console.error("Erreur lors du login :", error?.response?.data || error);
       alert(error?.response?.data?.message || "Erreur lors de la connexion");
     }
   };
-    useEffect(() => {
-      if (authToken) {
-        navigate('/home');
-      }
-    }, [authToken, navigate]);
+
+  useEffect(() => {
+    if (authToken) {
+      navigate("/home");
+    }
+  }, [authToken, navigate]);
 
   return (
     <div>
@@ -52,7 +54,7 @@ function Login() {
         />
         <button type="submit">Se connecter</button>
       </form>
-      <button onClick={() => (console.log('connexion avec google'))}>Se connecter avec google</button>
+      <button onClick={() => {window.location.href = backendUrl}}>Se connecter avec google</button>
       <button onClick={() => navigate('/signup')}>Créer un compte</button>
     </div>
   )
