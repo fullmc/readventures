@@ -18,3 +18,16 @@ export const getMe = async (token: string) => {
   });
   return res.data;
 };
+
+export const updateTheme = async (token: string, theme: "light" | "dark") => {
+  const res = await api.patch(
+    "/auth/theme",
+    { theme },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res.data;
+};

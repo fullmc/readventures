@@ -4,6 +4,7 @@ import { getMe } from "../services/authServices";
 type User = {
   id: number;
   email: string;
+  theme?: "light" | "dark";
 } | null;
 
 type AuthContextType = {
