@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { getMe } from "../services/authServices";
 
 type User = {
@@ -29,9 +29,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [authToken, setAuthToken] = useState<string | null>(null);
   const [user, setUser] = useState<User>(null);
   const [loading, setLoading] = useState(true);
+  const hasInitialized = useRef(false);
 
   // login
   const login = (token: string) => {
+    // Avoid multiple API call if same token
+    if (authToken === token && user) {
+      return;
+    }
+
     setLoading(true);
     setAuthToken(token);
     localStorage.setItem("authToken", token);
@@ -52,6 +58,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
+    if (hasInitialized.current) return;
+    hasInitialized.current = true;
+
     const params = new URLSearchParams(window.location.search);
     const googleToken = params.get("token");
     const storedToken = localStorage.getItem("authToken");
