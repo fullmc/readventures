@@ -20,6 +20,9 @@ export default defineConfig({
                 // Shadcn components auto-import
                 
                 "Button",
+                "Input",
+                "Label",
+                "LoginForm",
                 "NavigationMenu",
                 "NavigationMenuList",
                 "NavigationMenuItem",

@@ -7,7 +7,10 @@
 export {}
 declare global {
   const Button: typeof import('@/components/ui/layout').Button
+  const Input: typeof import('@/components/ui/layout').Input
+  const Label: typeof import('@/components/ui/layout').Label
   const Link: typeof import('react-router-dom').Link
+  const LoginForm: typeof import('@/components/ui/layout').LoginForm
   const NavLink: typeof import('react-router-dom').NavLink
   const Navigate: typeof import('react-router-dom').Navigate
   const Navigation-menu: typeof import('@/components/ui/layout')['Navigation-menu']
