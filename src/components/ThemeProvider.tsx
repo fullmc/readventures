@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useRef } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { updateTheme } from "@/services/authServices";
 
@@ -17,16 +17,23 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const stored = localStorage.getItem("theme");
     return (stored as Theme) || "light";
   });
+  
+  // Track the latest requested theme to prevent race conditions
+  const requestedTheme = useRef<Theme>(theme);
 
   // Get theme from backend if user is logged in
   useEffect(() => {
     if (user?.theme) {
       setTheme(user.theme);
+      requestedTheme.current = user.theme;
     }
   }, [user?.theme]);
 
   // Update backend when switching themes
   const handleSetTheme = async (newTheme: Theme) => {
+    // Update ref immediately to track the latest request
+    requestedTheme.current = newTheme;
+    
     setTheme(newTheme);
     
     // store it to make it persist
@@ -35,8 +42,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (authToken) {
       try {
         const response = await updateTheme(authToken, newTheme);
-        // Use backend theme if different
-        if (response?.theme) {
+        // Only apply backend theme if this is still the latest request
+        if (response?.theme && requestedTheme.current === newTheme) {
+          // Update ref with backend response
+          requestedTheme.current = response.theme;
           setTheme(response.theme);
         }
       } catch (error) {
