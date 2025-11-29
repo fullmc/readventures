@@ -46,7 +46,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
           document.documentElement.classList.add(response.theme);
         }
       } catch (error) {
-        console.error("Erreur lors de la mise à jour du thème:", error);
+        console.error("Error updating theme:", error);
       }
     }
   };
