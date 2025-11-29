@@ -29,7 +29,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const handleSetTheme = async (newTheme: Theme) => {
     setTheme(newTheme);
     
-    // Set theme
+    // Apply theme to document element
     document.documentElement.className = "";
     document.documentElement.classList.add(newTheme);
     
