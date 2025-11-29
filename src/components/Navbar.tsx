@@ -3,7 +3,7 @@ import { ThemeToggle } from "@/components/ui/themeToggle";
 import { cn } from "@/lib/utils";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 
-export default function Nav() {
+export default function Navbar() {
   const { authToken, logout } = useAuth();
 
   return (
