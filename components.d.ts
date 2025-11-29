@@ -5,6 +5,7 @@ declare global{
 	const LoginPage: typeof import('./src/components/Login')['default']
 	const Navbar: typeof import('./src/components/Navbar')['default']
 	const PrivateRoute: typeof import('./src/components/PrivateRoute')['default']
+	const SignupPage: typeof import('./src/components/Signup')['default']
 	const ThemeProvider: typeof import('./src/components/ThemeProvider')['ThemeProvider']
 	const AuthProvider: typeof import('./src/context/AuthContext')['AuthProvider']
 	const Home: typeof import('./src/pages/Home')['default']
@@ -13,5 +14,6 @@ declare global{
 	const Profile: typeof import('./src/pages/Profile')['default']
 	const Signup: typeof import('./src/pages/Signup')['default']
 	const LoginForm: typeof import('./src/components/ui/login-form')['LoginForm']
+	const SignupForm: typeof import('./src/components/ui/signup-form')['SignupForm']
 	const ThemeToggle: typeof import('./src/components/ui/themeToggle')['ThemeToggle']
 }
