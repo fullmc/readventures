@@ -18,7 +18,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return (stored as Theme) || "light";
   });
 
-  // Get theme from backend if user is logged 
+  // Get theme from backend if user is logged in
   useEffect(() => {
     if (user?.theme) {
       setTheme(user.theme);
