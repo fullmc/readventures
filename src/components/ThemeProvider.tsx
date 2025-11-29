@@ -29,21 +29,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const handleSetTheme = async (newTheme: Theme) => {
     setTheme(newTheme);
     
-    // Apply theme to document element
-    document.documentElement.className = "";
-    document.documentElement.classList.add(newTheme);
-    
     // store it to make it persist
     localStorage.setItem("theme", newTheme);
 
     if (authToken) {
       try {
         const response = await updateTheme(authToken, newTheme);
-        // Use backend theme
+        // Use backend theme if different
         if (response?.theme) {
           setTheme(response.theme);
-          document.documentElement.className = "";
-          document.documentElement.classList.add(response.theme);
         }
       } catch (error) {
         console.error("Error updating theme:", error);
