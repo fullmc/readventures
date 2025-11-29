@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   // login
   const login = (token: string) => {
-    // Avoid multiple API call if same token
+    // Avoid multiple API calls if same token
     if (authToken === token && user) {
       return;
     }
