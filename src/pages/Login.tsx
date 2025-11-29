@@ -10,16 +10,13 @@ function Login() {
   const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-  console.log("VITE_BACKEND:", backendUrl);
-
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
   
     try {  
       const data = await loginRequest(email, password);
   
-      login(data.token);   // token stored in AuthContext
+      login(data.token);  // token stored in AuthContext
   
     } catch (error: any) {
       console.error("Erreur lors du login :", error?.response?.data || error);

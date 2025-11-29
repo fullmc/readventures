@@ -10,6 +10,15 @@ declare global {
   const Link: typeof import('react-router-dom').Link
   const NavLink: typeof import('react-router-dom').NavLink
   const Navigate: typeof import('react-router-dom').Navigate
+  const Navigation-menu: typeof import('@/components/ui/layout')['Navigation-menu']
+  const NavigationMenu: typeof import('@/components/ui/layout').NavigationMenu
+  const NavigationMenuContent: typeof import('@/components/ui/layout').NavigationMenuContent
+  const NavigationMenuIndicator: typeof import('@/components/ui/layout').NavigationMenuIndicator
+  const NavigationMenuItem: typeof import('@/components/ui/layout').NavigationMenuItem
+  const NavigationMenuLink: typeof import('@/components/ui/layout').NavigationMenuLink
+  const NavigationMenuList: typeof import('@/components/ui/layout').NavigationMenuList
+  const NavigationMenuTrigger: typeof import('@/components/ui/layout').NavigationMenuTrigger
+  const NavigationMenuViewport: typeof import('@/components/ui/layout').NavigationMenuViewport
   const Outlet: typeof import('react-router-dom').Outlet
   const Route: typeof import('react-router-dom').Route
   const Routes: typeof import('react-router-dom').Routes
