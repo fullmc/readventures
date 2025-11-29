@@ -20,6 +20,14 @@ export default defineConfig({
                 // Shadcn components auto-import
                 
                 "Button",
+                "NavigationMenu",
+                "NavigationMenuList",
+                "NavigationMenuItem",
+                "NavigationMenuContent",
+                "NavigationMenuTrigger",
+                "NavigationMenuLink",
+                "NavigationMenuIndicator",
+                "NavigationMenuViewport",
               ],
             },
           ],

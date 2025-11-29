@@ -9,5 +9,5 @@ declare global{
 	const Login: typeof import('./src/pages/Login')['default']
 	const Profile: typeof import('./src/pages/Profile')['default']
 	const Signup: typeof import('./src/pages/Signup')['default']
-	const ThemeToggle: typeof import('./src/components/ui/ThemeToggle')['ThemeToggle']
+	const ThemeToggle: typeof import('./src/components/ui/themeToggle')['ThemeToggle']
 }

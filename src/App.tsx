@@ -1,20 +1,22 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
+import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import { ThemeToggle } from '@/components/ui/themeToggle'
 import PrivateRoute from './components/PrivateRoute';
+import Nav from './components/Navbar'
 
 function App() {
 
   return (
     <Router>
       <div className="App">
- 
+        <Nav/>
         <Routes>
 
           {/* Public */}
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
           {/* Protected routes */}
@@ -22,10 +24,7 @@ function App() {
             <Route path="/home" element={<Home />} />
           </Route>
 
-          {/* Default redirection */}
-
         </Routes>
-        <ThemeToggle />
 
       </div>
     </Router>
