@@ -25,7 +25,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, [user?.theme]);
 
-  // Update backend when switching 
+  // Update backend when switching themes
   const handleSetTheme = async (newTheme: Theme) => {
     setTheme(newTheme);
     
