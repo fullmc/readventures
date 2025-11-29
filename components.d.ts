@@ -3,9 +3,11 @@ export {}
 declare global{
 	const App: typeof import('./src/App')['default']
 	const PrivateRoute: typeof import('./src/components/PrivateRoute')['default']
+	const ThemeProvider: typeof import('./src/components/ThemeProvider')['ThemeProvider']
 	const AuthProvider: typeof import('./src/context/AuthContext')['AuthProvider']
 	const Home: typeof import('./src/pages/Home')['default']
 	const Login: typeof import('./src/pages/Login')['default']
 	const Profile: typeof import('./src/pages/Profile')['default']
 	const Signup: typeof import('./src/pages/Signup')['default']
+	const ThemeToggle: typeof import('./src/components/ui/ThemeToggle')['ThemeToggle']
 }
