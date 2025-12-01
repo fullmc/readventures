@@ -31,3 +31,8 @@ export const updateTheme = async (token: string, theme: "light" | "dark") => {
   );
   return res.data;
 };
+
+export const forgotPassword = async (email: string) => {
+  const res = await api.post("/auth/forgotten-password", { email });
+  return res.data;
+};

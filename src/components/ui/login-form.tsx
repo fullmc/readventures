@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
 import { useAuth } from '@/context/AuthContext'
-import { login as loginRequest } from "@/services/authServices";
+import { login as loginRequest, forgotPassword } from "@/services/authServices";
 import GoogleIcon from "../../../public/google.svg";
 
 export function LoginForm({
@@ -9,6 +9,11 @@ export function LoginForm({
 }: React.ComponentPropsWithoutRef<"form">) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showForgot, setShowForgot] = useState(false)
+  const [forgotEmail, setForgotEmail] = useState('')
+  const [forgotLoading, setForgotLoading] = useState(false)
+  const [forgotMessage, setForgotMessage] = useState<string | null>(null)
+  const [forgotError, setForgotError] = useState<string | null>(null)
   const { authToken, login } = useAuth()
   const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -35,6 +40,42 @@ export function LoginForm({
 
   return (
     <div>
+      {showForgot ? (
+        <div className="flex flex-col gap-4">
+          <h1 className="text-xl font-semibold">Mot de passe oublié ?</h1>
+          <div className="flex flex-col gap-4">
+            <Label htmlFor="forgot-email">Entrez votre email</Label>
+            <Input id="forgot-email" type="email" placeholder="m@example.com" value={forgotEmail} onChange={(e) => setForgotEmail(e.target.value)} required />
+            <div className="flex gap-2">
+              <Button type="button" className="cursor-pointer" onClick={async () => {
+                setForgotMessage(null); setForgotError(null);
+                if (!forgotEmail || !forgotEmail.includes('@')) {
+                  setForgotError('Veuillez renseigner une adresse email valide.');
+                  return;
+                }
+                try {
+                  setForgotLoading(true);
+                  await forgotPassword(forgotEmail);
+                  setForgotMessage("Si un compte existe, un email de réinitialisation a été envoyé.");
+                } catch (err: any) {
+                  console.error('Erreur forgot-password', err);
+                  setForgotError(err?.response?.data?.message || 'Erreur lors de la demande de réinitialisation');
+                } finally {
+                  setForgotLoading(false);
+                }
+              }} disabled={forgotLoading}>
+                {forgotLoading ? 'Envoi...' : 'Envoyer'}
+              </Button>
+              <Button type="button" variant="ghost" className="cursor-pointer"onClick={() => { setShowForgot(false); setForgotEmail(''); setForgotError(null); setForgotMessage(null); }}>
+                Annuler
+              </Button>
+            </div>
+            {forgotMessage && <p className="text-sm text-emerald-600">{forgotMessage}</p>}
+            {forgotError && <p className="text-sm text-destructive">{forgotError}</p>}
+          </div>
+        </div>
+      ) : (
+      <>
       <form className={cn("flex flex-col gap-6", className)} {...props} onSubmit={handleLogin}>
         <div className="flex flex-col items-center gap-2 text-center">
           <h1 className="text-2xl font-bold">Ravie de vous revoir :)</h1>
@@ -48,16 +89,15 @@ export function LoginForm({
             <Input id="email" type="email" placeholder="m@example.com" onChange={(e) => setEmail(e.target.value)} required />
           </div>
           <div className="grid gap-2">
-            <div className="flex items-center">
-              <Label htmlFor="password">Mot de passe</Label>
-              <a
-                href="#"
-                className="ml-auto text-sm underline-offset-4 hover:underline"
-              >
-                Mot de passe oublié ?
-              </a>
-            </div>
-            <Input id="password" type="password" required onChange={(e) => setPassword(e.target.value)}/>
+            <Label htmlFor="password">Mot de passe</Label>
+            <Input id="password" type="password" onChange={(e) => setPassword(e.target.value)} required />
+            <a
+              href="#"
+              className="ml-auto text-sm underline-offset-4 hover:underline"
+              onClick={(e) => { e.preventDefault(); setShowForgot((s) => !s); setForgotMessage(null); setForgotError(null); }}
+            >
+              Mot de passe oublié ?
+            </a>
           </div>
           <Button type="submit" className="w-full cursor-pointer">
             Se connecter
@@ -79,6 +119,8 @@ export function LoginForm({
           Sign up
         </Button>
       </div>
-    </div>
+    </>
+    )}
+  </div>
   )
 }
