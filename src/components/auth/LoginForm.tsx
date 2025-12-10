@@ -72,7 +72,7 @@ export function LoginForm({
               }} disabled={forgotLoading}>
                 {forgotLoading ? 'Envoi...' : 'Envoyer'}
               </Button>
-              <Button type="button" variant="ghost" className="cursor-pointer"onClick={() => { setShowForgot(false); setForgotEmail(''); setForgotError(null); setForgotMessage(null); }}>
+              <Button type="button" variant="ghost" className="cursor-pointer" onClick={() => { setShowForgot(false); setForgotEmail(''); setForgotError(null); setForgotMessage(null); }}>
                 Annuler
               </Button>
             </div>
