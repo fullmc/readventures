@@ -1,4 +1,5 @@
-import Cover from "../../public/nano-banana.png"
+import Cover from "@/assets/winter.jpeg";
+import { SignupForm } from "./auth/SignupForm";
 
 export default function SignupPage() {
   return (

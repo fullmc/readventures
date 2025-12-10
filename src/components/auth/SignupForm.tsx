@@ -33,6 +33,7 @@ export function SignupForm({
       // Redirect
       navigate('/home');
   
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Signup error:", error?.response?.data || error);
       alert(error?.response?.data?.message || "Erreur lors de l'inscription");

@@ -1,4 +1,5 @@
-import Cover from "../../public/nano-banana.png"
+import Cover from "@/assets/winter.jpeg";
+import { LoginForm } from "./auth/LoginForm";
 
 export default function LoginPage() {
   return (
@@ -13,7 +14,7 @@ export default function LoginPage() {
       <div className="bg-muted relative hidden lg:block">
         <img
           src={Cover}
-          alt="Image"
+          alt="Vue sur une chambre cosy avec un chat et des livres"
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.5]"
         />
       </div>
