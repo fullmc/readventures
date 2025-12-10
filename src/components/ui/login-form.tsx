@@ -107,10 +107,13 @@ export function LoginForm({
               Ou
             </span>
           </div>
-          <Button variant="outline" className="w-full cursor-pointer" onClick={() => {window.location.href = backendUrl}}>
-            <img src={GoogleIcon}/>
-            Se connecter avec Google
-          </Button>
+          <a
+            href={backendUrl}
+            className="w-full cursor-pointer inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+          >
+            <img src={GoogleIcon} alt="Google" />
+            <span className="ml-2">Se connecter avec Google</span>
+          </a>
         </div>
       </form>
       <div className="text-center text-sm">
