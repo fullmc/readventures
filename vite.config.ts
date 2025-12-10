@@ -22,7 +22,6 @@ export default defineConfig({
                 "Button",
                 "Input",
                 "Label",
-                "LoginForm",
                 "NavigationMenu",
                 "NavigationMenuList",
                 "NavigationMenuItem",
