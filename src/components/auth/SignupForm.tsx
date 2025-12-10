@@ -22,8 +22,8 @@ export function SignupForm({
     e.preventDefault();
     setError(null);
   
-    // check email format
-    if (!emailRegex.test(email)) {
+    // check email format and non-empty
+    if (!email || !emailRegex.test(email)) {
       setError("Format d'email invalide.");
       return;
     }
