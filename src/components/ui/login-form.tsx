@@ -19,6 +19,8 @@ export function LoginForm({
   const { authToken, login } = useAuth()
   const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ export function LoginForm({
   
       login(data.token);  // token stored in AuthContext
   
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Erreur lors du login :", error?.response?.data || error);
       alert(error?.response?.data?.message || "Erreur lors de la connexion");
@@ -51,7 +54,7 @@ export function LoginForm({
             <div className="flex gap-2">
               <Button type="button" className="cursor-pointer" onClick={async () => {
                 setForgotMessage(null); setForgotError(null);
-                if (!forgotEmail || !forgotEmail.includes('@')) {
+                if (!forgotEmail || !emailRegex.test(forgotEmail)) {
                   setForgotError('Veuillez renseigner une adresse email valide.');
                   return;
                 }
@@ -59,6 +62,7 @@ export function LoginForm({
                   setForgotLoading(true);
                   await forgotPassword(forgotEmail);
                   setForgotMessage("Si un compte existe, un email de réinitialisation a été envoyé.");
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 } catch (err: any) {
                   console.error('Erreur forgot-password', err);
                   setForgotError(err?.response?.data?.message || 'Erreur lors de la demande de réinitialisation');
@@ -102,7 +106,7 @@ export function LoginForm({
             </a>
           </div>
           <Button type="submit" className="w-full cursor-pointer">
-            Se connecter
+             Se connecter
           </Button>
           <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
             <span className="relative z-10 bg-background px-2 text-muted-foreground">
