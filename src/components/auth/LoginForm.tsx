@@ -96,7 +96,7 @@ export function LoginForm({
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Mot de passe</Label>
-            <Input id="password" type="password" onChange={(e) => setPassword(e.target.value)} required />
+            <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             <a
               href="#"
               className="ml-auto text-sm underline-offset-4 hover:underline"
