@@ -11,6 +11,7 @@ function Signup() {
   const [loading, setLoading] = useState(false)
 
   const { authToken, login } = useAuth()
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const navigate = useNavigate()
 
   const handleRegister = async (e: React.FormEvent) => {
@@ -23,15 +24,17 @@ function Signup() {
       return;
     }
 
+    if (!email || !emailRegex.test(email)) {
+      setError('Veuillez renseigner une adresse email valide.');
+      return;
+    }
+
     try {
       setLoading(true);
       const data = await signupRequest(email, password);
 
       // User automatically logged in
       login(data.token);
-
-      // Redirect
-      navigate('/home');
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -54,7 +57,7 @@ function Signup() {
       <form onSubmit={handleRegister}>
         <input
           type="email"
-          placeholder="Adresse e-mail"
+          placeholder="m@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required

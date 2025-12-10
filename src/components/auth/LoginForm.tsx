@@ -55,7 +55,7 @@ export function LoginForm({
           <h1 className="text-xl font-semibold">Mot de passe oublié ?</h1>
           <div className="flex flex-col gap-4">
             <Label htmlFor="forgot-email">Entrez votre email</Label>
-            <Input id="forgot-email" type="email" placeholder="m@example.com" value={forgotEmail} onChange={(e) => setForgotEmail(e.target.value)} required />
+            <Input id="forgot-email" type="email" placeholder="m@example.com" value={forgotEmail} onChange={(e) => setForgotEmail(e.target.value)} />
             <div className="flex gap-2">
               <Button type="button" className="cursor-pointer" onClick={async () => {
                 setForgotMessage(null); setForgotError(null);
