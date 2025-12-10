@@ -53,14 +53,17 @@ export default function Navbar() {
                       </NavLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                      <Button
-                        variant="ghost"
+                      <NavLink
+                        to="/"
                         onClick={logout}
                         className={cn(navigationMenuTriggerStyle())}
                       >
                         Déconnexion
-                      </Button>
+                      </NavLink>
                     </NavigationMenuItem>
+
+                    {/* Theme Toggle */}
+                    <ThemeToggle />
                   </>
                 ) : (
                   // Public navigation
@@ -79,27 +82,11 @@ export default function Navbar() {
                         Connexion
                       </NavLink>
                     </NavigationMenuItem>
-                    <NavigationMenuItem>
-                      <NavLink
-                        to="/signup"
-                        className={({ isActive }) =>
-                          cn(
-                            navigationMenuTriggerStyle(),
-                            "cursor-pointer",
-                            isActive && "bg-accent"
-                          )
-                        }
-                      >
-                        Inscription
-                      </NavLink>
-                    </NavigationMenuItem>
                   </>
                 )}
               </NavigationMenuList>
             </NavigationMenu>
 
-            {/* Theme Toggle */}
-            <ThemeToggle />
           </div>
         </div>
       </div>

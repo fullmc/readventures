@@ -2,12 +2,16 @@
 export {}
 declare global{
 	const App: typeof import('./src/App')['default']
+	const LoginPage: typeof import('./src/components/Login')['default']
+	const Navbar: typeof import('./src/components/Navbar')['default']
 	const PrivateRoute: typeof import('./src/components/PrivateRoute')['default']
 	const ThemeProvider: typeof import('./src/components/ThemeProvider')['ThemeProvider']
 	const AuthProvider: typeof import('./src/context/AuthContext')['AuthProvider']
 	const Home: typeof import('./src/pages/Home')['default']
+	const Landing: typeof import('./src/pages/Landing')['default']
 	const Login: typeof import('./src/pages/Login')['default']
 	const Profile: typeof import('./src/pages/Profile')['default']
 	const Signup: typeof import('./src/pages/Signup')['default']
+	const LoginForm: typeof import('./src/components/auth/LoginForm')['LoginForm']
 	const ThemeToggle: typeof import('./src/components/ui/themeToggle')['ThemeToggle']
 }
