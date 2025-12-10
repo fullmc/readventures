@@ -119,9 +119,9 @@ export function LoginForm({
         </div>
       </form>
       <div className="text-center text-sm">
-        Don&apos;t have an account?{" "}
+        Vous n&apos;avez pas de compte ?{" "}
         <Button type="button" className="cursor-pointer" variant="link" onClick={() => navigate('/signup')}>
-          Sign up
+          S&apos;inscrire
         </Button>
       </div>
     </>
