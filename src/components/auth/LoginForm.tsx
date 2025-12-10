@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils"
 import { useAuth } from '@/context/AuthContext'
 import { login as loginRequest, forgotPassword } from "@/services/authServices";
-import GoogleIcon from "../../../public/google.svg";
+import GoogleIcon from "@/assets/google.svg";
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -11,6 +11,8 @@ export function LoginForm({
 }: React.ComponentPropsWithoutRef<"form">) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
   const [showForgot, setShowForgot] = useState(false)
   const [forgotEmail, setForgotEmail] = useState('')
   const [forgotLoading, setForgotLoading] = useState(false)
@@ -24,16 +26,19 @@ export function LoginForm({
   
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-  
-    try {  
+    setError(null);
+    try {
+      setLoading(true);
       const data = await loginRequest(email, password);
-  
+
       login(data.token);  // token stored in AuthContext
-  
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Erreur lors du login :", error?.response?.data || error);
-      alert(error?.response?.data?.message || "Erreur lors de la connexion");
+      setError(error?.response?.data?.message || "Erreur lors de la connexion");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -96,18 +101,19 @@ export function LoginForm({
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Mot de passe</Label>
-            <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-            <a
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-              onClick={(e) => { e.preventDefault(); setShowForgot((s) => !s); setForgotMessage(null); setForgotError(null); }}
+            <Input id="password" type="password" onChange={(e) => setPassword(e.target.value)} required />
+            <button
+              type="button"
+              className="ml-auto text-sm underline-offset-4 hover:underline bg-transparent border-none p-0 cursor-pointer"
+              onClick={() => { setShowForgot((s) => !s); setForgotMessage(null); setForgotError(null); }}
             >
               Mot de passe oublié ?
-            </a>
+            </button>
           </div>
-          <Button type="submit" className="w-full cursor-pointer">
-             Se connecter
-          </Button>
+           <Button type="submit" className="w-full cursor-pointer" disabled={loading}>
+             {loading ? 'Connexion...' : 'Se connecter'}
+           </Button>
+           {error && <p className="text-sm text-destructive">{error}</p>}
           <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
             <span className="relative z-10 bg-background px-2 text-muted-foreground">
               Ou
@@ -123,7 +129,7 @@ export function LoginForm({
         </div>
       </form>
       <div className="text-center text-sm">
-        Vous n&apos;avez pas de compte ?{" "}
+        Vous n&apos;avez pas de compte ?
         <Button type="button" className="cursor-pointer" variant="link" onClick={() => navigate('/signup')}>
           S&apos;inscrire
         </Button>

@@ -83,12 +83,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           if (googleToken) {
             localStorage.setItem("authToken", tokenToUse);
             // ensure user arrives on Home after Google sign-in
-            try {
-              window.location.href = '/home';
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            } catch (err) {
-              // in case of error, do nothing
-            }
+            window.location.href = '/home';
           }
         })
         .catch(logout)

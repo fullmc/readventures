@@ -7,31 +7,38 @@ function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const { authToken, login } = useAuth()
   const navigate = useNavigate()
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+    setError(null);
+
     // check passwords
     if (password !== confirmPassword) {
-      alert("Les mots de passe ne correspondent pas.");
+      setError("Les mots de passe ne correspondent pas.");
       return;
     }
-  
+
     try {
+      setLoading(true);
       const data = await signupRequest(email, password);
-  
+
       // User automatically logged in
       login(data.token);
-  
+
       // Redirect
       navigate('/home');
-  
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Signup error:", error?.response?.data || error);
-      alert(error?.response?.data?.message || "Erreur lors de l'inscription");
+      setError(error?.response?.data?.message || "Erreur lors de l'inscription");
+    } finally {
+      setLoading(false);
     }
   };
   
@@ -69,7 +76,10 @@ function Signup() {
           required
         />
 
-        <button type="submit">Créer mon compte</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Création...' : 'Créer mon compte'}
+        </button>
+        {error && <p className="text-sm text-destructive">{error}</p>}
       </form>
 
       <button onClick={() => navigate('/')}>
