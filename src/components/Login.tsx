@@ -1,4 +1,4 @@
-import Cover from "../../public/cover-cat.png"
+import Cover from "../../public/winter.jpeg";
 
 export default function LoginPage() {
   return (
