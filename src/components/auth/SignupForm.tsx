@@ -96,7 +96,7 @@ export function SignupForm({
             </span>
           </div>
           <Button variant="outline" className="w-full cursor-pointer" onClick={() => {window.location.href = backendUrl}}>
-            <img src={GoogleIcon}/>
+            <img src={GoogleIcon} alt="Google logo" />
             S'enregistrer avec Google
           </Button>
         </div>
