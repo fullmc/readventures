@@ -13,7 +13,6 @@ declare global {
   const LoginForm: typeof import('@/components/ui/layout').LoginForm
   const NavLink: typeof import('react-router-dom').NavLink
   const Navigate: typeof import('react-router-dom').Navigate
-  const Navigation-menu: typeof import('@/components/ui/layout')['Navigation-menu']
   const NavigationMenu: typeof import('@/components/ui/layout').NavigationMenu
   const NavigationMenuContent: typeof import('@/components/ui/layout').NavigationMenuContent
   const NavigationMenuIndicator: typeof import('@/components/ui/layout').NavigationMenuIndicator
