@@ -10,7 +10,7 @@ declare global {
   const Input: typeof import('@/components/ui/layout').Input
   const Label: typeof import('@/components/ui/layout').Label
   const Link: typeof import('react-router-dom').Link
-  const LoginForm: typeof import('@/components/ui/layout').LoginForm
+  const LoginForm: typeof import('@/components/auth/LoginForm').LoginForm
   const NavLink: typeof import('react-router-dom').NavLink
   const Navigate: typeof import('react-router-dom').Navigate
   const NavigationMenu: typeof import('@/components/ui/layout').NavigationMenu
